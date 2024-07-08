@@ -8,6 +8,22 @@ DEFAULT_CONFIG = {
     'gql_update_payment_cycle_perms': ['200003'],
     'gql_delete_payment_cycle_perms': ['200004'],
     'gql_check_payment_cycle': True,
+    "payment_cycle_benefits_field_mapping": {
+        'payrollbenefitconsumption__payroll__payment_cycle__code': 'Payment Cycle Code',
+        'payrollbenefitconsumption__payroll__name': 'Payroll Name',
+        'payrollbenefitconsumption__payroll__status': 'Payroll Status',
+        'individual__first_name': 'First Name',
+        'individual__last_name': 'Last Name',
+        'individual__dob': 'Date of Birth',
+        'code': 'Code',
+        'status': 'Status',
+        'amount': 'Amount',
+        'type': 'Type',
+        'receipt': 'Receipt',
+    },
+    "payment_cycle_benefits_paid_yes": "Yes",
+    "payment_cycle_benefits_paid_no": "No",
+    "payment_cycle_benefits_status_column": "Status",
 }
 
 
@@ -20,6 +36,10 @@ class PaymentCycleConfig(AppConfig):
     gql_update_payment_cycle_perms = None
     gql_delete_payment_cycle_perms = None
     gql_check_payment_cycle = None
+    payment_cycle_benefits_field_mapping = None
+    payment_cycle_benefits_paid_yes = None
+    payment_cycle_benefits_paid_no = None
+    payment_cycle_benefits_status_column = None
 
     def ready(self):
         from core.models import ModuleConfiguration
