@@ -46,7 +46,7 @@ class PaymentCycleService(BaseService, UpdateCheckerLogicServiceMixin, CreateChe
             payrollbenefitconsumption__payroll__id__in=payrolls,
             json_ext__contains={'duplicated': 'duplicated'},
             is_deleted=False
-        )
+        ).order_by('individual__last_name', 'individual__first_name')
         if not qs.exists():
             raise ValueError('payment_cycle_service.validation.no_duplicated_payments_for_this_cycle')
         return qs
