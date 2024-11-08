@@ -7,6 +7,7 @@ from django.utils.translation import gettext as _
 
 from core.gql_queries import ValidationMessageGQLType
 from core.schema import OrderedDjangoFilterConnectionField
+from core.services import wait_for_mutation
 from core.utils import append_validity_filter
 from payment_cycle.apps import PaymentCycleConfig
 from payment_cycle.gql_mutations import CreatePaymentCycleMutation, UpdatePaymentCycleMutation
@@ -48,6 +49,7 @@ class Query(graphene.ObjectType):
 
         client_mutation_id = kwargs.get("client_mutation_id")
         if client_mutation_id:
+            wait_for_mutation(client_mutation_id)
             filters.append(Q(mutations__mutation__client_mutation_id=client_mutation_id))
 
         Query._check_permissions(info.context.user, PaymentCycleConfig.gql_query_payment_cycle_perms)
