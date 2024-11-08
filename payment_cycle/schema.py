@@ -7,7 +7,7 @@ from django.utils.translation import gettext as _
 
 from core.gql_queries import ValidationMessageGQLType
 from core.schema import OrderedDjangoFilterConnectionField
-from core.service import wait_for_mutation
+from core.services import wait_for_mutation
 from core.utils import append_validity_filter
 from payment_cycle.apps import PaymentCycleConfig
 from payment_cycle.gql_mutations import CreatePaymentCycleMutation, UpdatePaymentCycleMutation
