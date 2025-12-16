@@ -1,10 +1,8 @@
 import logging
 
 from rest_framework import views
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
-from core.utils import DefaultStorageFileHandler
 from core.views import check_user_rights
 from payment_cycle.apps import PaymentCycleConfig
 from payment_cycle.services import PaymentCycleService
@@ -20,7 +18,7 @@ class PaymentCycleDuplicatedPaymentsAPIView(views.APIView):
             payment_cycle = request.GET.get('payment_cycle_id')
             service = PaymentCycleService(request.user)
             in_memory_file = service.download_duplicates(payment_cycle)
-            response = Response(headers={'Content-Disposition': f'attachment; filename="payments_duplicates.csv"'},
+            response = Response(headers={'Content-Disposition': 'attachment; filename="payments_duplicates.csv"'},
                                 content_type='text/csv')
             response.content = in_memory_file.getvalue()
             return response

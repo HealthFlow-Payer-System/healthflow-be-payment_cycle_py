@@ -1,4 +1,3 @@
-from core.datetimes.ad_datetime import datetime
 from payment_cycle.models import PaymentCycle
 
 service_add_payload = {

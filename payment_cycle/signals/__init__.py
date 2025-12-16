@@ -14,4 +14,3 @@ def bind_service_signals():
         on_task_complete_service_handler(PaymentCycleService),
         bind_type=ServiceSignalBindType.AFTER
     )
-

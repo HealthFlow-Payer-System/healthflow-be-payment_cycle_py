@@ -26,13 +26,12 @@ class PaymentCycleValidation(BaseModelValidation,
             cls.validate_unique_code_name(code, id_)
 
 
-
 def validate_payment_cycle_unique_code(code, uuid=None):
     try:
         PaymentCycleValidation().validate_unique_code_name(code, uuid)
         return []
-    except ValidationError as e:
-        return [{"message": _("payment_cycle.validation.payment_cycle.code_exists" % {
+    except ValidationError:
+        return [{"message": _("payment_cycle.validation.payment_cycle.code_exists" % {  # noqa: F504
             'code': code
         })}]
 
@@ -43,6 +42,5 @@ def validate_payment_cycle_whitespace_code(code, uuid=None):
         PaymentCycleValidation().validate_string_whitespace_end(code)
         PaymentCycleValidation().validate_string_whitespace_start(code)
         return []
-    except ValidationError as e:
+    except ValidationError:
         return [{"message": _("payment_cycle.validation.payment_cycle.code_whitespace")}]
-

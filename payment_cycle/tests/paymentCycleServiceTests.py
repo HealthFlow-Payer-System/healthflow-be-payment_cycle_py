@@ -3,7 +3,7 @@ import copy
 from django.test import TestCase
 
 from payment_cycle.models import PaymentCycle
-from payment_cycle.tests.data import  service_add_payload, service_update_payload
+from payment_cycle.tests.data import service_add_payload, service_update_payload
 from payment_cycle.services import PaymentCycleService
 from core.test_helpers import LogInHelper
 
@@ -32,7 +32,6 @@ class PaymentCycleServiceTests(TestCase):
         uuid = result.get('data', {}).get('uuid', None)
         query = self.query_all.filter(uuid=uuid)
         self.assertEqual(query.count(), 1)
-
 
     def test_update_payment_cycle(self):
         result = self.service.create(service_add_payload)

@@ -43,7 +43,6 @@ class Query(graphene.ObjectType):
         else:
             return ValidationMessageGQLType(True)
 
-
     def resolve_payment_cycle(self, info, **kwargs):
         filters = append_validity_filter(**kwargs)
 
